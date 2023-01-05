@@ -1,0 +1,53 @@
+import { StyleSheet, Text, View ,Image,ActivityIndicator} from 'react-native'
+import React ,{useState,useEffect} from 'react'
+import { useNavigation } from '@react-navigation/native';
+
+const SplashScreen = () => {
+    const [animating, setAnimating] = useState(true);
+    const navigation = useNavigation();
+    useEffect(() => {
+        setTimeout(() => {
+          setAnimating(false);
+          //Check if user_id is set or not
+          //If not then send for Authentication
+          //else send to Home Screen
+        //   AsyncStorage.getItem('user_id').then((value) =>
+        //     navigation.replace(
+        //       value === null ? 'Auth' : 'DrawerNavigationRoutes'
+        //     ),
+        //   );
+        navigation.navigate("Auth")
+        
+        }, 2000);
+      }, []);
+  return (
+    <View style={styles.container}>
+       {/* <Image
+        source={require('../Image/aboutreact.png')}
+        style={{width: '90%', resizeMode: 'contain', margin: 30}}
+      /> */}
+      <Text>SPLASH SCREEN</Text>
+      <ActivityIndicator
+        animating={animating}
+        color="#FFFFFF"
+        size="large"
+        style={styles.activityIndicator}
+      />
+    </View>
+  )
+}
+
+export default SplashScreen
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#307ecc',
+      },
+      activityIndicator: {
+        alignItems: 'center',
+        height: 80,
+      },
+})
