@@ -7,6 +7,7 @@ import {
   Image,
   FlatList,
   Pressable,
+  Dimensions
 } from "react-native";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +18,10 @@ import {
   removeFromCart,
 } from "../redux/CartSlice";
 const ProductComponent = ({ item }) => {
+  console.log("props",item)
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+  const { width } = Dimensions.get('window');
   const [selected, setSelected] = useState([]);
   const dispatch = useDispatch();
   const [additems, setAddItems] = useState(0);
@@ -33,11 +38,15 @@ const ProductComponent = ({ item }) => {
       >
         <Image
           style={{
-            height: 145,
-            borderRadius: 5,
-            aspectRatio: 5 / 6,
-            marginLeft: 10,
-            resizeMode: "cover",
+            width: width * 0.31, height: 145 ,
+            // borderRadius: 5,
+            // aspectRatio: 5 / 6,
+            // marginLeft: 10,
+            // resizeMode: "cover",
+            // width:"90%",
+            marginLeft:9,
+           
+            resizeMode:"contain"
           }}
           source={{ uri: item.image }}
         />
@@ -46,7 +55,7 @@ const ProductComponent = ({ item }) => {
             {item.name.substr(0, 14)}
           </Text>
 
-          <Text style={{ marginTop: 4 }}>
+          <Text style={{ marginTop: 4 ,fontSize:13,}}>
             {item.description.substr(0, 17) + "..."}
           </Text>
 

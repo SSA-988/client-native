@@ -7,6 +7,7 @@ import {
   Image,
   FlatList,
   Pressable,
+  Dimensions
 } from "react-native";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +16,6 @@ import ProductComponent from "../components/ProductComponent";
 import { useNavigation } from "@react-navigation/native";
 
 const ProductScreen = () => {
-  const [selected, setSelected] = useState([]);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [additems, setAddItems] = useState(0);
@@ -171,6 +171,7 @@ const ProductScreen = () => {
       name: "Salad",
     },
   ];
+  const [selected, setSelected] = useState([types[0][3]]);
   return (
     <>
     <SafeAreaView style={{ flexDirection: "row" }}>
